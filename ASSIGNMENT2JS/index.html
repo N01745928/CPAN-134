@@ -1,77 +1,198 @@
 <!DOCTYPE html>
-<html >
+<html lang="en">
 <head>
-    
-    <title>Assignment 2 - Page 1</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-            background-color:#f0f0f0 ;
-        }
-        h1 {
-            color: darkblue;
-            text-align: center;
-        }
-        h2, p {
-            font-family: Arial, sans-serif;
-            line-height: 1.5;
-        }
-        #clickButton {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .highlight {
-            background-color: yellow;
-            padding: 5px;
-        }
-        a[href] {
-            color: blue;
-            text-decoration: none;
-        }
-        a:hover {
-            color: orange;
-            text-decoration: underline;
-        }
-        button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+  <meta charset="UTF-8">
+  <title>Assignment 2 - SRISHTI KAUSHAL</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      background-color: #343232;
+      color: #f0f0f0;
+    }
 
-    </style>
+    h1, h2 {
+      color: #f1cd3c;
+    }
+
+    nav {
+      margin-bottom: 30px;
+      background-color: #1e1e1e;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      border: 1px solid #2c2c2c;
+      padding: 25px;
+      margin-bottom: 40px;
+      border-radius: 10px;
+      background-color: #1e1e1e;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background-color: #724203;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #df4f11;
+    }
+
+    input[type="number"] {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #444;
+      background-color: #2c2c2c;
+      color: white;
+    }
+
+    li {
+      margin: 5px 0;
+      cursor: pointer;
+      list-style-type: square;
+    }
+
+    #boxModelDiv {
+      width: 200px;
+      height: 150px;
+      padding: 20px;
+      border: 5px solid #881a1a;
+      margin-top: 10px;
+      background-color: #2c2c2c;
+      transition: background-color 0.5s, border-color 0.5s;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <h2>Part 1: JavaScript Basics</h2>
-    <script>
-        function calculateArea(width, height) {
-            while (isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
-                width = parseFloat(prompt("Enter a valid width:"));
-                height = parseFloat(prompt("Enter a valid height:"));
-            }
-            console.log("Area of rectangle:", width * height);
-        }
-        calculateArea(5, 3);
-    </script>
-    
-    <h2>Part 2: Event Handling</h2>
+
+  <h1>Assignment 2 - by SRISHTI KAUSHAL </h1>
+
+  <nav>
+    <a href="#part1">Part 1</a>
+    <a href="#part2">Part 2</a>
+    <a href="#part3">Part 3</a>
+    <a href="#part4">Part 4</a>
+  </nav>
+
+  <!-- Part 1 -->
+  <section id="part1">
+    <h2>Part 1: JavaScript Basics  Calculate Area</h2>
+    <label>Width: <input type="number" id="widthInput" /></label><br><br>
+    <label>Height: <input type="number" id="heightInput" /></label><br><br>
+    <button onclick="handleAreaCalculation()">Calculate Area</button>
+    <p id="areaResult"></p>
+  </section>
+
+  <!-- Part 2 -->
+  <section id="part2">
+    <h2>Part 2: Event Handling  Button Click</h2>
     <button id="clickButton">Click Me!</button>
-    
-    <script>
-        document.getElementById("clickButton").addEventListener("click", function() {
-            alert("Button clicked!");
-            this.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
-        });
-    </script>
-    
-    <a href="dom-css.html">Go to Page 2</a>
+  </section>
+
+  <!-- Part 3 -->
+  <section id="part3">
+    <h2>Part 3: DOM Manipulation  List Items</h2>
+    <ul id="myList">
+      <li>First item</li>
+      <li>Second item</li>
+      <li>Third item</li>
+    </ul>
+  </section>
+
+  <!-- Part 4 -->
+  <section id="part4">
+    <h2>Part 4: CSS Box Model  Styled Div</h2>
+    <div id="boxModelDiv"> Hover/Click Me</div>
+  </section>
+
+  <script>
+    function handleAreaCalculation() {
+      let width = parseFloat(document.getElementById("widthInput").value);
+      let height = parseFloat(document.getElementById("heightInput").value);
+      if (isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
+        alert("Please enter positive numeric values.");
+        return;
+      }
+      const area = width * height;
+      document.getElementById("areaResult").textContent = "Area: " + area;
+    }
+
+    document.getElementById("clickButton").addEventListener("click", function () {
+      alert("Button clicked!");
+      this.style.backgroundColor = getRandomColor();
+    });
+
+    function getRandomString(length = 8) {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      let result = "";
+      for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+    }
+
+    const ul = document.getElementById("myList");
+    const newItem = document.createElement("li");
+    newItem.textContent = "Fourth item";
+    ul.appendChild(newItem);
+
+    const listItems = document.querySelectorAll("#myList li");
+    listItems.forEach(item => {
+      item.addEventListener("click", function () {
+        this.textContent = getRandomString();
+      });
+    });
+
+    const box = document.getElementById("boxModelDiv");
+
+    box.addEventListener("click", function () {
+      box.style.backgroundColor = getRandomColor();
+    });
+
+    box.addEventListener("mouseover", function () {
+      box.style.borderColor = getRandomColor();
+    });
+
+    box.addEventListener("mouseout", function () {
+      box.style.borderColor = "#00bcd4";
+    });
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  </script>
+
 </body>
 </html>
