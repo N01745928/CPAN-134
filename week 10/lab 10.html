@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User List</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+        }
+        h2 {
+          text-align: center;
+          color: #966969;
+        }
+        #user-list {
+          list-style-type: none;
+          padding: 0;
+        }
+        .user-item {
+          padding: 8px;
+          margin: 5px 0;
+          background-color: #e2e2e2;
+          border-radius: 4px;
+        }
+  
+        #user-name {
+          padding: 8px;
+          margin: 10px 0;
+          width: 80%;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+  
+        button {
+          padding: 8px 12px;
+          margin: 5px;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+  
+        #addButton {
+          background-color: #08525c;
+          color: white;
+          border: none;
+        }
+        #addButton:hover {
+          background-color: #e57335;
+        }
+        #clearButton {
+          background-color: #8e2821;
+          color: white;
+          border: none;
+        }
+        #clearButton:hover {
+          background-color: #e57335;
+        }
+      </style>
+  </head>
+  <body>
+    <h2>User List</h2>
+    <ul id="user-list"></ul>
+
+    <h3>Add a User</h3>
+    <input type="text" id="user-name" placeholder="Enter name">
+    <button id="addButton">Add User</button>
+    <button id="clearButton">Clear Users</button>
+
+    <script>
+      const app = {
+        users: ["Alice", "Bob", "Charlie"],
+        displayUsers: function () {
+          const userList = document.getElementById("user-list");
+          userList.innerHTML = ""; 
+
+          this.users.forEach((user, index) => {
+            const li = document.createElement("li");
+            li.className = "user-item";
+            li.textContent = (index + 1) + ". " + user;
+
+            const removeButton = document.createElement("button");
+            removeButton.textContent = "Remove";
+            removeButton.addEventListener("click", () => {
+              this.removeUser(index); 
+            });
+
+            li.appendChild(removeButton); 
+            userList.appendChild(li);
+          });
+        },
+        addUser: function () {
+          const input = document.getElementById("user-name");
+          const name = input.value.trim();
+
+          if (!name) {
+            alert("Please enter a name.");
+            return;
+          }
+          const lowerCaseName = name.toLowerCase();
+          if (this.users.some(user => user.toLowerCase() === lowerCaseName)) {
+            alert("This name already exists in the list.");
+            return;
+          }
+          this.users.push(name); 
+          input.value = ""; 
+          this.displayUsers(); 
+        },
+        clearUsers: function () {
+          this.users = []; 
+          this.displayUsers();
+        },
+        removeUser: function (index) {
+          this.users.splice(index, 1); 
+          this.displayUsers(); 
+        }
+      };
+      app.displayUsers();
+      document.getElementById("addButton").addEventListener("click", function () {
+        app.addUser();
+      });
+      document.getElementById("clearButton").addEventListener("click", function () {
+        app.clearUsers();
+      });
+    </script>
+  </body>
+</html>

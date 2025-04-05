@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JavaScript Lab - Objects and Rest Parameters</title>
+</head>
+
+<body>
+
+  <script>
+    const student = {
+      name: "Srishti Kaushal",
+      age: 19,
+      subjects: ["OS","JS","DB"],
+
+      addSubject(subject) {
+        this.subjects.push(subject);
+      },
+
+      displayInfo: function() {
+        console.log(`Name: ${this.name}`);
+        console.log(`Age: ${this.age}`);
+        console.log(`Subjects: ${this.subjects.join(', ')}`);
+      }
+    };
+
+    student.addSubject('English');
+    student.displayInfo();
+
+    function calculateAverage(...scores) {
+      const sum = scores.reduce((total, score) => total + score, 0);
+      return sum / scores.length;
+    }
+
+    console.log(`Average Score: ${calculateAverage(85, 90, 78, 92, 88)}`);
+  </script>
+</body>
+
+</html>

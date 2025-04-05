@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>Assignment 2 - Page 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: darkblue;
+            text-align: center;
+        }
+        h2, p {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+        }
+        #styledBox {
+            width: 200px;
+            height: 100px;
+            padding: 20px;
+            border: 5px solid black;
+            margin: 20px auto;
+            background-color: lightblue;
+            transition: all 0.3s ease;
+        }
+        .highlight {
+            background-color: yellow;
+            padding: 5px;
+        }
+        h2, p {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+        }
+        a[href] {
+            color: blue;
+            text-decoration: none;
+        }
+        a:hover {
+            color: orange;
+            text-decoration: underline;
+        }
+        li {
+            cursor: pointer;
+            padding: 5px;
+            margin: 5px;
+            background-color: #ddd;
+        }
+        p.first-letter::first-letter {
+            font-size: 200%;
+            font-weight: bold;
+            color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <h2>Part 3: DOM Manipulation</h2>
+    <ul id="itemList">
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+    </ul>
+    
+    <h2>Part 4: CSS Box Model</h2>
+    <div class="box" id="styledBox">Hover & Click Me</div>
+    
+    <script>
+        let newItem = document.createElement("li");
+        newItem.textContent = "Fourth item";
+        document.getElementById("itemList").appendChild(newItem);
+        
+        document.querySelectorAll("li").forEach(item => {
+            item.addEventListener("click", function() {
+                this.textContent = Math.random().toString(36).substring(7);
+            });
+        });
+        
+        let box = document.getElementById("styledBox");
+        box.addEventListener("click", function() {
+            this.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+        });
+        box.addEventListener("mouseover", function() {
+            this.style.borderColor = "red";
+        });
+        box.addEventListener("mouseout", function() {
+            this.style.borderColor = "black";
+        });
+    </script>
+    
+    <a href="index.html">Go to Page 1</a>
+</body>
+</html>

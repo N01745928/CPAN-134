@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html >
+<head>
+    
+    <title>Assignment 2 - Page 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color:#f0f0f0 ;
+        }
+        h1 {
+            color: darkblue;
+            text-align: center;
+        }
+        h2, p {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+        }
+        #clickButton {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .highlight {
+            background-color: yellow;
+            padding: 5px;
+        }
+        a[href] {
+            color: blue;
+            text-decoration: none;
+        }
+        a:hover {
+            color: orange;
+            text-decoration: underline;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Part 1: JavaScript Basics</h2>
+    <script>
+        function calculateArea(width, height) {
+            while (isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
+                width = parseFloat(prompt("Enter a valid width:"));
+                height = parseFloat(prompt("Enter a valid height:"));
+            }
+            console.log("Area of rectangle:", width * height);
+        }
+        calculateArea(5, 3);
+    </script>
+    
+    <h2>Part 2: Event Handling</h2>
+    <button id="clickButton">Click Me!</button>
+    
+    <script>
+        document.getElementById("clickButton").addEventListener("click", function() {
+            alert("Button clicked!");
+            this.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+        });
+    </script>
+    
+    <a href="dom-css.html">Go to Page 2</a>
+</body>
+</html>
