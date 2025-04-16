@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Study-Buddy - Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    window.onload = function () {
+      const quotes = [
+        "Success is the sum of small efforts repeated day in and day out.",
+        "Stay focused and never give up on your dreams.",
+        "Discipline is the bridge between goals and accomplishment.",
+        "Push yourself, because no one else is going to do it for you.",
+        "Every day is a new beginning. Take a deep breath and start again."
+      ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const selectedQuote = quotes[randomIndex];
+      
+      alert(selectedQuote);
+  
+      document.getElementById("quote").innerText = selectedQuote;
+    };
+  </script>
+  
+</head>
+<body>
+  <header>
+    <h1>Heyy Buddy :)</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="planner.html">Planner</a></li>
+        <li><a href="goals.html">Goals</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+
+    <section class="study-cards">
+      <h2>Top Study Techniques</h2>
+      <div class="card-container">
+
+        <div class="card">
+          <h3>Pomodoro Technique</h3>
+          <p><strong>Description:</strong> Study in 25-minute focused sprints with 5-minute breaks.</p>
+          <p><strong>Boosts:</strong> Focus & Time Management</p>
+          <iframe width="100%" height="200" src="https://www.youtube.com/embed/mNBmG24djoY" title="Pomodoro Technique" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="card">
+          <h3>Feynman Technique</h3>
+          <p><strong>Description:</strong> Explain concepts in simple words as if teaching someone else.</p>
+          <p><strong>Boosts:</strong> Deep Understanding</p>
+          <iframe width="100%" height="200" src="https://www.youtube.com/embed/tkm0TNFzIeg?si=1Zy1O_10SNiaPlV9" title="Feynman Technique" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="card">
+          <h3>Active Recall</h3>
+          <p><strong>Description:</strong> Use quizzes and flashcards to force memory retrieval.</p>
+          <p><strong>Boosts:</strong> Long-term Memory</p>
+          <iframe width="100%" height="200" src="https://www.youtube.com/embed/IyvlgRf7u3Y?si=3MVou_atN3JIbTME" title="Active Recall" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="card">
+          <h3>Spaced Repetition</h3>
+          <p><strong>Description:</strong> Review information at increasing intervals over time.</p>
+          <p><strong>Boosts:</strong> Retention Over Time</p>
+          <iframe width="100%" height="200" src="https://www.youtube.com/embed/Z-zNHHpXoMM" title="Spaced Repetition" frameborder="0" allowfullscreen></iframe>
+        </div>
+        
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <h2>Subscribe to Our Newsletter</h2>
+      <form id="newsletterForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+      <script>
+        document.getElementById("newsletterForm").addEventListener("submit", function (e) {
+          e.preventDefault();
+          const emailInput = document.getElementById("email");
+          const emailValue = emailInput.value.trim();
+          const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      
+          if (emailPattern.test(emailValue)) {
+            alert("Subscribed successfully!");
+            emailInput.value = "";
+          } else {
+            alert("Please enter a valid email address.");
+          }
+        });
+      </script>
+      
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Study-Buddy ( created by: SRISHTI KAUSHAL) | <a href="mailto:contact@studypal.com">Contact Us</a></p>
+  </footer>
+</body>
+
+</html>
