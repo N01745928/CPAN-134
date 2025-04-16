@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Goals</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Study Goals</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="planner.html">Weekly Planner</a></li>
+        <li><a href="goals.html">Study Goals</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <form id="goalForm">
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" required><br>
+
+      <label for="goal">Goal Description:</label><br>
+      <textarea id="goal" rows="4" cols="30" required></textarea><br>
+
+      <button type="submit">Add Goal</button>
+    </form>
+    <ul id="goalList"></ul>
+  </main>
+  <footer>
+    <p>&copy; 2025 Study-Buddy</p>
+  </footer>
+  <script>
+    const goalForm = document.getElementById("goalForm");
+    const goalList = document.getElementById("goalList");
+  
+    window.onload = function () {
+      const savedGoals = JSON.parse(localStorage.getItem("goals")) || [];
+      savedGoals.forEach(goal => {
+        addGoalToList(goal.subject, goal.description);
+      });
+    };
+  
+    goalForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const subject = document.getElementById("subject").value.trim();
+      const goal = document.getElementById("goal").value.trim();
+      if(subject && goal) {
+        addGoalToList(subject, goal);
+  
+        const existingGoals = JSON.parse(localStorage.getItem("goals")) || [];
+        existingGoals.push({ subject, description: goal });
+        localStorage.setItem("goals", JSON.stringify(existingGoals));
+  
+        goalForm.reset();
+      } else {
+        alert("Please fill out both fields.");
+      }
+    });
+  
+    function addGoalToList(subject, goal) {
+      const li = document.createElement("li");
+      li.textContent = `${subject}: ${goal}`;
+  
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Remove";
+      deleteBtn.style.marginLeft = "10px";
+      deleteBtn.onclick = function () {
+        li.remove();
+        deleteGoal(subject, goal);
+      };
+  
+      li.appendChild(deleteBtn);
+      goalList.appendChild(li);
+    }
+  
+    function deleteGoal(subject, goal) {
+      const existingGoals = JSON.parse(localStorage.getItem("goals")) || [];
+      const updatedGoals = existingGoals.filter(g => !(g.subject === subject && g.description === goal));
+      localStorage.setItem("goals", JSON.stringify(updatedGoals));
+    }
+  </script>
+  
+  
+</body>
+</html>

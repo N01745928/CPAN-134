@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Weekly Planner</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="planner.html">Weekly Planner</a></li>
+        <li><a href="goals.html">Study Goals</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Tasks</th>
+          <th>Done</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Monday</td>
+          <td><input type="text" id="monday-task"></td>
+          <td><input type="checkbox" id="monday-done"></td>
+        </tr>
+        <tr>
+          <td>Tuesday</td>
+          <td><input type="text" id="tuesday-task"></td>
+          <td><input type="checkbox" id="tuesday-done"></td>
+        </tr>
+        <tr>
+          <td>Wednesday</td>
+          <td><input type="text" id="wednesday-task"></td>
+          <td><input type="checkbox" id="wednesday-done"></td>
+        </tr>
+        <tr>
+          <td>Thursday</td>
+          <td><input type="text" id="thursday-task"></td>
+          <td><input type="checkbox" id="thursday-done"></td>
+        </tr>
+        <tr>
+          <td>Friday</td>
+          <td><input type="text" id="friday-task"></td>
+          <td><input type="checkbox" id="friday-done"></td>
+        </tr>
+        <tr>
+          <td>Saturday</td>
+          <td><input type="text" id="saturday-task"></td>
+          <td><input type="checkbox" id="saturday-done"></td>
+        </tr>
+        <tr>
+          <td>Sunday</td>
+          <td><input type="text" id="sunday-task"></td>
+          <td><input type="checkbox" id="sunday-done"></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <button onclick="saveTasks()">Save Tasks</button>
+  </main>
+  <footer>
+    <p>&copy; 2025 Study-Buddy</p>
+  </footer>
+
+  <script>
+    function saveTasks() {
+      const tasks = {
+        monday: {
+          task: document.getElementById('monday-task').value,
+          done: document.getElementById('monday-done').checked
+        },
+        tuesday: {
+          task: document.getElementById('tuesday-task').value,
+          done: document.getElementById('tuesday-done').checked
+        },
+        wednesday: {
+          task: document.getElementById('wednesday-task').value,
+          done: document.getElementById('wednesday-done').checked
+        },
+        thursday: {
+          task: document.getElementById('thursday-task').value,
+          done: document.getElementById('thursday-done').checked
+        },
+        friday: {
+          task: document.getElementById('friday-task').value,
+          done: document.getElementById('friday-done').checked
+        },
+        saturday: {
+          task: document.getElementById('saturday-task').value,
+          done: document.getElementById('saturday-done').checked
+        },
+        sunday: {
+          task: document.getElementById('sunday-task').value,
+          done: document.getElementById('sunday-done').checked
+        }
+      };
+
+      localStorage.setItem('weeklyPlanner', JSON.stringify(tasks));
+    }
+
+
+    function loadTasks() {
+      const tasks = JSON.parse(localStorage.getItem('weeklyPlanner'));
+      if (tasks) {
+        document.getElementById('monday-task').value = tasks.monday.task;
+        document.getElementById('monday-done').checked = tasks.monday.done;
+
+        document.getElementById('tuesday-task').value = tasks.tuesday.task;
+        document.getElementById('tuesday-done').checked = tasks.tuesday.done;
+
+        document.getElementById('wednesday-task').value = tasks.wednesday.task;
+        document.getElementById('wednesday-done').checked = tasks.wednesday.done;
+
+        document.getElementById('thursday-task').value = tasks.thursday.task;
+        document.getElementById('thursday-done').checked = tasks.thursday.done;
+
+        document.getElementById('friday-task').value = tasks.friday.task;
+        document.getElementById('friday-done').checked = tasks.friday.done;
+
+        document.getElementById('saturday-task').value = tasks.saturday.task;
+        document.getElementById('saturday-done').checked = tasks.saturday.done;
+
+        document.getElementById('sunday-task').value = tasks.sunday.task;
+        document.getElementById('sunday-done').checked = tasks.sunday.done;
+      }
+    }
+
+    window.onload = loadTasks;
+  </script>
+</body>
+</html>
